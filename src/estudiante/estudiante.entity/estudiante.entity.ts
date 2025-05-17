@@ -1,26 +1,28 @@
 /* eslint-disable prettier/prettier */
+
 import { ProyectoEntity } from "src/proyecto/proyecto.entity/proyecto.entity";
-import { Column, Entity, Long, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity,  OneToMany, PrimaryGeneratedColumn } from "typeorm";
+
 
 @Entity()
 export class EstudianteEntity {
 
-    @PrimaryGeneratedColumn("uuid")
-    id:Long
+    @PrimaryGeneratedColumn("increment")
+    id: number
 
-    @Column()
+    @Column({type:'int'})
     promedio : number
 
     @Column()
     programa:string
 
-    @Column()
+    @Column({type:'int'})
     semestre : number
 
     @Column()
     nombre:string
 
-    @Column()
+    @Column({type:'int'})
     cedula:number
 
     @OneToMany(()=>ProyectoEntity,proyecto=>proyecto.lider)

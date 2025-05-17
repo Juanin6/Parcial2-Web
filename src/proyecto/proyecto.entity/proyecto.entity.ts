@@ -2,13 +2,13 @@
 import { EstudianteEntity } from "src/estudiante/estudiante.entity/estudiante.entity";
 import { EvaluacionEntity } from "src/evaluacion/evaluacion.entity/evaluacion.entity";
 import { ProfesorEntity } from "src/profesor/profesor.entity/profesor.entity";
-import { Column, Entity, Long, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity,  ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class ProyectoEntity {
 
-    @PrimaryGeneratedColumn("uuid")
-    id:Long
+    @PrimaryGeneratedColumn('increment')
+    id: number
     
     @Column()
     titulo:string
@@ -16,13 +16,13 @@ export class ProyectoEntity {
     @Column()
     area:string
 
-    @Column()
+    @Column({type:'int'})
     presupuesto:number
 
-    @Column()
+    @Column({type:'int'})
     notaFinal:number;
 
-    @Column()
+    @Column({type:'int'})
     estado : number
 
     @Column()
@@ -31,10 +31,10 @@ export class ProyectoEntity {
     @Column()
     fechaFinal : string
 
-    @ManyToOne(()=>EstudianteEntity,estudiante => estudiante.proyectos , {nullable:false})
+    @ManyToOne(()=>EstudianteEntity,estudiante => estudiante.proyectos, {nullable:false})
     lider : EstudianteEntity
 
-    @ManyToOne(()=> ProfesorEntity,profesor => profesor.mentorias)
+    @ManyToOne(()=> ProfesorEntity,profesor => profesor.mentorias,{nullable:false} )
     mentor : ProfesorEntity
 
     @OneToMany(()=> EvaluacionEntity ,evaluacion => evaluacion.proyecto)
