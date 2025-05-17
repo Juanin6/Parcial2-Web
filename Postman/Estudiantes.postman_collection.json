@@ -1,0 +1,339 @@
+{
+	"info": {
+		"_postman_id": "d752b42e-6397-4af6-8a70-940ecd480fca",
+		"name": "Estudiantes",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33425677"
+	},
+	"item": [
+		{
+			"name": "create Estudiante",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"estudiante_id\", data.id);\r",
+							"\r",
+							"pm.test(\"Create Estudiante Sucessfully\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"promedio\" : 4,\r\n    \"programa\" : \"Sistemas\",\r\n    \"semestre\": 6,\r\n    \"nombre\" : \"Juan Nicolas\",\r\n    \"cedula\" : 10199857\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/estudiante/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"estudiante",
+						"create"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "create Estudiante",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"promedio\" : 4,\r\n    \"programa\" : \"Sistemas\",\r\n    \"semestre\": 6,\r\n    \"nombre\" : \"Juan Nicolas\",\r\n    \"cedula\" : 10199857\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/estudiante/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"estudiante",
+								"create"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\r\n    \"id\": 2,\r\n    \"promedio\": 4,\r\n    \"programa\": \"Sistemas\",\r\n    \"semestre\": 6,\r\n    \"nombre\": \"Juan Nicolas\",\r\n    \"cedula\": 10199857\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Create Invalid Estudiante",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"Create Estudiante Unsucessfully (promedio <2)\", function () {\r",
+							"   pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"promedio\" : 1,\r\n    \"programa\" : \"Sistemas\",\r\n    \"semestre\": 6,\r\n    \"nombre\" : \"Juan Nicolas\",\r\n    \"cedula\" : 10199857\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/estudiante/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"estudiante",
+						"create"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "create Estudiante Unsucessfully",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"promedio\" : 1,\r\n    \"programa\" : \"Sistemas\",\r\n    \"semestre\": 6,\r\n    \"nombre\" : \"Juan Nicolas\",\r\n    \"cedula\" : 10199857\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/estudiante/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"estudiante",
+								"create"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"message\": \"El promedio es menor o igual a 3.2\",\r\n    \"error\": \"Bad Request\",\r\n    \"statusCode\": 400\r\n}"
+				}
+			]
+		},
+		{
+			"name": "delete Estudiante",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Delete Estudiante Sucessfully\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/estudiante/{{estudiante_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"estudiante",
+						"{{estudiante_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "delete Estudiante",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/estudiante/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"estudiante",
+								"1"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "delete Invalid Estudiante",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Delete Estudiante unsucessfully (not found Estudiante)\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/estudiante/0000000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"estudiante",
+						"0000000"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "delete Estudiante unsucessfully",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/estudiante/20",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"estudiante",
+								"20"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"message\": \"No se encontro estudiante con ese id\",\r\n    \"error\": \"Not Found\",\r\n    \"statusCode\": 404\r\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "estudiante_id\n",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

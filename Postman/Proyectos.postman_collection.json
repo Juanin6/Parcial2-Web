@@ -1,0 +1,437 @@
+{
+	"info": {
+		"_postman_id": "82f7bd57-6822-4d1a-b549-7f22aa733e28",
+		"name": "Proyectos",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33425677"
+	},
+	"item": [
+		{
+			"name": "create Proyecto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"proyecto_id\", data.id);\r",
+							"\r",
+							"pm.test(\"Create Proyecto Sucessfully\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"titulo\" : \"Inteligencia Artificial v2\",\r\n    \"area\" : \"Sistemas\",\r\n    \"presupuesto\" : 100000,\r\n    \"notaFinal\" : 4,\r\n    \"estado\": 1,\r\n    \"fechaInicio\":\"01/01/2025\",\r\n    \"fechaFinal\":\"05/21/2025\",\r\n    \"mentorID\":1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/proyecto/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"proyecto",
+						"create"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "create Proyecto",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"titulo\" : \"Inteligencia Artificial\",\r\n    \"area\" : \"Sistemas\",\r\n    \"presupuesto\" : 100000,\r\n    \"notaFinal\" : 4,\r\n    \"estado\": 1,\r\n    \"fechaInicio\":\"01/01/2025\",\r\n    \"fechaFinal\":\"05/21/2025\",\r\n    \"mentorID\":1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/proyecto/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"proyecto",
+								"create"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\r\n    \"titulo\": \"Inteligencia Artificial\",\r\n    \"area\": \"Sistemas\",\r\n    \"presupuesto\": 100000,\r\n    \"notaFinal\": 4,\r\n    \"estado\": 1,\r\n    \"fechaInicio\": \"01/01/2025\",\r\n    \"fechaFinal\": \"05/21/2025\",\r\n    \"mentorID\": 1,\r\n    \"mentor\": {\r\n        \"id\": 1,\r\n        \"cedula\": 1023122,\r\n        \"nombre\": \"Camilo\",\r\n        \"departamento\": \"Robotica\",\r\n        \"extension\": 10321,\r\n        \"esParEvaluado\": false\r\n    },\r\n    \"id\": 2\r\n}"
+				}
+			]
+		},
+		{
+			"name": "create Invalid Proyecto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"Create Invalid Proyecto\", function () {\r",
+							"   pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"titulo\" : \"Inteligencia Artificial v2\",\r\n    \"area\" : \"Sistemas\",\r\n    \"presupuesto\" : 0,\r\n    \"notaFinal\" : 4,\r\n    \"estado\": 1,\r\n    \"fechaInicio\":\"01/01/2025\",\r\n    \"fechaFinal\":\"05/21/2025\",\r\n    \"mentorID\":1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/proyecto/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"proyecto",
+						"create"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "create Proyecto Unsucessfully",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"titulo\" : \"Inteligencia Artificial\",\r\n    \"area\" : \"Sistemas\",\r\n    \"presupuesto\" : 0,\r\n    \"notaFinal\" : 4,\r\n    \"estado\": 1,\r\n    \"fechaInicio\":\"01/01/2025\",\r\n    \"fechaFinal\":\"05/21/2025\",\r\n    \"mentorID\":1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/proyecto/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"proyecto",
+								"create"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"message\": \"Presupuesto menor o igual a 0\",\r\n    \"error\": \"Bad Request\",\r\n    \"statusCode\": 400\r\n}"
+				}
+			]
+		},
+		{
+			"name": "avanzar Proyecto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Avanzar Proyecto Sucessfully\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/proyecto/{{proyecto_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"proyecto",
+						"{{proyecto_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "avanzar Proyecto",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/proyecto/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"proyecto",
+								"2"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\r\n    \"id\": 2,\r\n    \"titulo\": \"Inteligencia Artificial\",\r\n    \"area\": \"Sistemas\",\r\n    \"presupuesto\": 100000,\r\n    \"notaFinal\": 4,\r\n    \"estado\": 2,\r\n    \"fechaInicio\": \"01/01/2025\",\r\n    \"fechaFinal\": \"05/21/2025\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "avanzar Invalid Proyecto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Avanzar Proyecto Unsucessfully\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/proyecto/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"proyecto",
+						"2"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "avanzar Proyecto Unsucessfully",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/proyecto/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"proyecto",
+								"2"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"message\": \"Estado no se puede incrementar mas\",\r\n    \"error\": \"Bad Request\",\r\n    \"statusCode\": 400\r\n}"
+				}
+			]
+		},
+		{
+			"name": "find Lider",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Find Lider Sucessfully\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/proyecto/estudiantes/{{proyecto_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"proyecto",
+						"estudiantes",
+						"{{proyecto_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "find Lider",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/proyecto/estudiantes/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"proyecto",
+								"estudiantes",
+								"2"
+							]
+						}
+					},
+					"code": 201,
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\r\n    \"id\": 2,\r\n    \"promedio\": 4,\r\n    \"programa\": \"Sistemas\",\r\n    \"semestre\": 6,\r\n    \"nombre\": \"Juan Nicolas\",\r\n    \"cedula\": 10199857\r\n}"
+				}
+			]
+		},
+		{
+			"name": "find Lider Invalid Proyect",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Find Lider Unsucessfully (Proyect Id Not Exist)\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/proyecto/estudiantes/232497",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"proyecto",
+						"estudiantes",
+						"232497"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Not Found Proyect ID",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/proyecto/estudiantes/1438957",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"proyecto",
+								"estudiantes",
+								"1438957"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"message\": \"No se encontro el proyecto con ese ID\",\r\n    \"error\": \"Not Found\",\r\n    \"statusCode\": 404\r\n}"
+				}
+			]
+		}
+	]
+}

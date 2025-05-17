@@ -1,0 +1,170 @@
+{
+	"info": {
+		"_postman_id": "466f17ab-cf5c-4a82-933b-b01655e2ba8b",
+		"name": "Evaluaciones",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33425677"
+	},
+	"item": [
+		{
+			"name": "Create Evaluacion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Create Evaluacion Sucessfully\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"proyId\":2,\r\n    \"profId\":1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/evaluacion/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"evaluacion",
+						"create"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Create Evaluacion",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"proyId\":2,\r\n    \"profId\":1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/evaluacion/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"evaluacion",
+								"create"
+							]
+						}
+					},
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\r\n    \"id\": 1,\r\n    \"proyecto\": {\r\n        \"id\": 2,\r\n        \"titulo\": \"Inteligencia Artificial\",\r\n        \"area\": \"Sistemas\",\r\n        \"presupuesto\": 100000,\r\n        \"notaFinal\": 4,\r\n        \"estado\": 4,\r\n        \"fechaInicio\": \"01/01/2025\",\r\n        \"fechaFinal\": \"05/21/2025\",\r\n        \"mentor\": {\r\n            \"id\": 2,\r\n            \"cedula\": 1023122,\r\n            \"nombre\": \"Sebastian\",\r\n            \"departamento\": \"Robotica\",\r\n            \"extension\": 10321,\r\n            \"esParEvaluado\": false\r\n        }\r\n    },\r\n    \"profesor\": {\r\n        \"id\": 1,\r\n        \"cedula\": 1023122,\r\n        \"nombre\": \"Camilo\",\r\n        \"departamento\": \"Robotica\",\r\n        \"extension\": 10321,\r\n        \"esParEvaluado\": false\r\n    }\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Create Invalid Evaluacion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Create Evaluacion Unsucessfully(evaluador == mentor)\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"proyId\":3,\r\n    \"profId\":1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/evaluacion/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"evaluacion",
+						"create"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Create Evaluacion",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"proyId\":3,\r\n    \"profId\":1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/evaluacion/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"evaluacion",
+								"create"
+							]
+						}
+					},
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\r\n    \"message\": \"El evaluador no puede ser el mentor del proyecto\",\r\n    \"error\": \"Bad Request\",\r\n    \"statusCode\": 400\r\n}"
+				}
+			]
+		}
+	]
+}

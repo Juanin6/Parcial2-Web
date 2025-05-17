@@ -23,6 +23,7 @@ export class ProfesorService {
             }
             return this.profeRepo.save(profesor)
         }
+    
     async asignarEvaluador(id : number, evId:number ):Promise<ProfesorEntity>{
         const profesor : ProfesorEntity | null = await this.profeRepo.findOne({where:{id},relations:["evaluaciones"]})
         
@@ -30,7 +31,7 @@ export class ProfesorService {
             throw new NotFoundException("No se encontro con profesor con ese ID")
         }
         if(profesor.evaluaciones.length>=3){
-            throw new BadRequestException("El maximo de evaluaciones es menos de 3")
+            throw new BadRequestException("El maximo de evaluaciones es 3")
         }
         const evaluacionCreated : EvaluacionEntity | null = await this.evaluacionRepo.findOne({where:{id:evId}})
         if(!evaluacionCreated){

@@ -1,0 +1,344 @@
+{
+	"info": {
+		"_postman_id": "600f20c6-1530-48dd-842e-ef9c717d41a5",
+		"name": "Profesores",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33425677"
+	},
+	"item": [
+		{
+			"name": "create Profesor",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"profesor_id\", data.id);\r",
+							"\r",
+							"\r",
+							"pm.test(\"Create Profesor Sucessfully\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cedula\":1023122,\r\n    \"nombre\":\"Sebastian\",\r\n    \"departamento\":\"Robotica\",\r\n    \"extension\":\"10321\",\r\n    \"esParEvaluado\":false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/profesor/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"profesor",
+						"create"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "create Profesor",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cedula\":1023122,\r\n    \"nombre\":\"Camilo\",\r\n    \"departamento\":\"Robotica\",\r\n    \"extension\":\"10321\",\r\n    \"esParEvaluado\":false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/profesor/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"profesor",
+								"create"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\r\n    \"id\": 1,\r\n    \"cedula\": 1023122,\r\n    \"nombre\": \"Camilo\",\r\n    \"departamento\": \"Robotica\",\r\n    \"extension\": \"10321\",\r\n    \"esParEvaluado\": false\r\n}"
+				}
+			]
+		},
+		{
+			"name": "create Invalid Profesor",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Create Invalid Profesor (extension!=5)\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cedula\":1023122,\r\n    \"nombre\":\"Sebastian\",\r\n    \"departamento\":\"Robotica\",\r\n    \"extension\":\"10321786786\",\r\n    \"esParEvaluado\":false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/profesor/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"profesor",
+						"create"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "create Profesor unsucessfully",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cedula\":1023122,\r\n    \"nombre\":\"Camilo\",\r\n    \"departamento\":\"Robotica\",\r\n    \"extension\":\"1032154\",\r\n    \"esParEvaluado\":false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/profesor/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"profesor",
+								"create"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"message\": \"Extension es diferente de 5 digitos\",\r\n    \"error\": \"Bad Request\",\r\n    \"statusCode\": 400\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Asign Evaluador",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Asign Profesor Sucessfully\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/profesor/asign/{{profesor_id}}/ev/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"profesor",
+						"asign",
+						"{{profesor_id}}",
+						"ev",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Asign Evaluador",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/profesor/asign/{{profesor_id}}/ev/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"profesor",
+								"asign",
+								"{{profesor_id}}",
+								"ev",
+								"1"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\r\n    \"id\": 1,\r\n    \"cedula\": 1023122,\r\n    \"nombre\": \"Camilo\",\r\n    \"departamento\": \"Robotica\",\r\n    \"extension\": 10321,\r\n    \"esParEvaluado\": false,\r\n    \"evaluaciones\": [\r\n        {\r\n            \"id\": 1\r\n        },\r\n        {\r\n            \"id\": 1,\r\n            \"profesor\": {\r\n                \"id\": 1,\r\n                \"cedula\": 1023122,\r\n                \"nombre\": \"Camilo\",\r\n                \"departamento\": \"Robotica\",\r\n                \"extension\": 10321,\r\n                \"esParEvaluado\": false\r\n            }\r\n        }\r\n    ]\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Asign Invalid Profesor",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Asign Invalid Profesor (No existing Evaluacion)\", function () {\r",
+							"     var data = pm.response.json();\r",
+							"     pm.expect(data.message).to.eql(\"No se encontro con profesor con ese ID\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/profesor/asign/00000/ev/2087997887",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"profesor",
+						"asign",
+						"00000",
+						"ev",
+						"2087997887"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Not found Profesor",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/profesor/asign/00000/ev/2087997887",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"profesor",
+								"asign",
+								"00000",
+								"ev",
+								"2087997887"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"message\": \"No existe evaluacion con ese ID\",\r\n    \"error\": \"Not Found\",\r\n    \"statusCode\": 404\r\n}"
+				}
+			]
+		}
+	]
+}
